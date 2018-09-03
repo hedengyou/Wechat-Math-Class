@@ -9,8 +9,8 @@
 	},
 	"miniprogramRoot": "./dist/",
 	"compileType": "miniprogram",
-	"appid": "touristappid",
-	"projectname": "mpvue-test",
+	"appid": "wx0030fdd0aa486488",
+	"projectname": "WechatMathClass",
 	"condition": {
 		"search": {
 			"current": -1,
