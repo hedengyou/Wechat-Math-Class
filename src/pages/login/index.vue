@@ -5,8 +5,8 @@
     </div>
     <div>
       <mp-field
-        placeholder="请输入账号"
-        type="text"
+        placeholder="请输入学号"
+        type="number"
         label="账号"
       />
       <mp-field
