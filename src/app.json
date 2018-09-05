@@ -3,7 +3,8 @@
     "pages/index/main",
     "pages/logs/main",
     "pages/counter/main",
-    "pages/login/main"
+    "pages/login/main",
+    "pages/myLessons/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

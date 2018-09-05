@@ -80,7 +80,7 @@ export default {
     },
     
     enterChooseLessons () {
-    wx.navigateTo({ url: '../counter/main'});
+    wx.navigateTo({ url: '../myLessons/main'});
   }
     },
   created: function() {
