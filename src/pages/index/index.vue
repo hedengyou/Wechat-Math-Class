@@ -11,12 +11,12 @@
           </div>
 
           <div class="img_2">
-              <image  class="picture_2" src="/static/images/1.jpg"/>
+            <image  class="picture_2" src="/static/images/1.jpg"/>
             <p class="p2">概率统计</p>
           </div>
 
           <div class="img_3">
-              <image  class="picture_3" src="/static/images/2.jpg"/>
+            <image  class="picture_3" src="/static/images/2.jpg"/>
             <p class="p3">线性代数</p>
           </div>
           </div>
