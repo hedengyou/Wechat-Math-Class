@@ -47,9 +47,9 @@
 
 <script>
 import HelloWorld from '../../components/HelloWorld';
+
+import API from '../../utils/services';
  
-
-
 export default {
   components: {
     HelloWorld
@@ -80,12 +80,18 @@ export default {
     },
     
     enterChooseLessons () {
-    wx.navigateTo({ url: '../myLessons/main'});
-  }
+      wx.navigateTo({ url: '../myLessons/main'});
     },
+    testNetWork() {
+      API.helloApi().then((data) => {
+        console.log(data);
+      });
+    }
+  },
   created: function() {
     // 调用应用实例的方法获取全局数据
     this.getUserInfo();
+    // this.testNetWork();
   }
 }
 </script>
