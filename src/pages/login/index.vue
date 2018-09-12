@@ -8,11 +8,13 @@
         placeholder="请输入学号"
         type="number"
         label="账号"
+        @change="nameChange"
       />
       <mp-field
         placeholder="请输入密码"
         type="number"
         label="密码"
+        @change="passwordChange"
       />
     </div>
     <button class="submit-button" size="mini" type="primary" @click="buttonClick">登录</button>
@@ -21,20 +23,44 @@
 
 <script>
 import MpField from 'mp-weui/packages/field';
+import Toast from 'mp-weui/packages/toast'
+
+import API from '../../utils/services';
 
 export default {
   data () {
     return {
       motto: 'Hello World',
-      userInfo: {}
+      userInfo: {},
+      name: '',
+      password: ''
     }
   },
   components: {
-    MpField
+    MpField, Toast
   },
   methods: {
     buttonClick () {
-      wx.navigateTo({ url: '../index/main' });
+      const { name, password } = this;
+      if (!name || !password) return;
+      API.login(name, password).then(res => {
+        // 登录成功
+        wx.setStorage({
+          key: "Token",
+          data: res,
+          success: () => {
+            wx.navigateTo({ url: '../index/main' });
+          }
+        });
+      }).catch(err => {
+        Toast('登录失败！请检查输入！');
+      });
+    },
+    nameChange(value) {
+      this.name = value;
+    },
+    passwordChange(value) {
+      this.password = value;
     }
   }
 }

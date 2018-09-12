@@ -7,6 +7,16 @@ function helloApi() {
   return request('GET', '/');
 }
 
+function login(name, password) {
+  return request('POST', '/api/login', { roleId: name, password });
+}
+
+function getAllUsers() {
+  return request('GET', '/api/users');
+}
+
 export default {
-  helloApi
+  helloApi,
+  login,
+  getAllUsers
 }

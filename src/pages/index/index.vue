@@ -83,15 +83,15 @@ export default {
       wx.navigateTo({ url: '../myLessons/main'});
     },
     testNetWork() {
-      API.helloApi().then((data) => {
+      API.getAllUsers().then((data) => {
         console.log(data);
       });
     }
   },
   created: function() {
     // 调用应用实例的方法获取全局数据
-    this.getUserInfo();
-    // this.testNetWork();
+    // this.getUserInfo();
+    this.testNetWork();
   }
 }
 </script>
