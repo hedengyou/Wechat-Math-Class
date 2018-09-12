@@ -39,12 +39,13 @@ export default function(method, url, data, option) {
         data,
         success: function(res) {
           console.log(res);
-          if (res.statusCode === 401) {
-            wx.navigateTo({ url: '../pages/login/main' });
-            reject('权限验证失败');
-          } else if (res.statusCode === 200) {
-            resolve(res.data);
-            reject('error');
+          if (res.statusCode === 200) {
+            if (res.data.output && res.data.output.statusCode === 401) {
+              wx.navigateTo({ url: '../pages/login/main' });
+              reject('权限验证失败');
+            } else {
+              resolve(res.data);
+            }
           } else {
             // 返回的状态码不是200，说明请求有错误
             reject('error');
