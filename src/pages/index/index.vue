@@ -56,7 +56,8 @@ export default {
   },
   data () {
     return {
-      userInfo: {}
+      userInfo: {},
+      lessonList:[]
     }
   },
   methods: {
@@ -77,13 +78,18 @@ export default {
           })
         }
       })
-    },
-    
+    }, 
     enterChooseLessons () {
       wx.navigateTo({ url: '../myLessons/main'});
     },
     testNetWork() {
       API.getAllUsers().then((data) => {
+        console.log(data);
+        this.lessonList = data;
+      });
+    },
+    fetchLessons() {
+      API.getAllLessons().then((data) => {
         console.log(data);
       });
     }
@@ -91,7 +97,8 @@ export default {
   created: function() {
     // 调用应用实例的方法获取全局数据
     // this.getUserInfo();
-    this.testNetWork();
+    //this.testNetWork();
+    this.fetchLessons();
   }
 }
 </script>
