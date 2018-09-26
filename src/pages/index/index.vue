@@ -80,10 +80,7 @@ export default {
       wx.redirectTo({ url: '../myLessons/main'});
     },
     testNetWork() {
-      API.getAllUsers().then((data) => {
-        console.log(data);
-        this.lessonList = data;
-      });
+      API.helloApi();
     },
     fetchLessons() {
       API.getAllLessons().then((data) => {
@@ -98,7 +95,7 @@ export default {
   created: function() {
     // 调用应用实例的方法获取全局数据
     // this.getUserInfo();
-    //this.testNetWork();
+    this.testNetWork();
     // this.fetchLessons();
   }
 }
