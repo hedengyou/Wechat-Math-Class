@@ -5,7 +5,7 @@ const noAuthUrls = [
   '/api/login',
 ];
 
-export default function(method, url, data, option) {
+export default function (method, url, data, option) {
   const methodsArr = ['GET', 'POST', 'PUT', 'DELETE'];
   return new Promise(
     (resolve, reject) => {
