@@ -24,11 +24,11 @@ export default function (method, url, data, option) {
         } catch (e) {
           // Do something when catch error
           console.log(e);
-          wx.navigateTo({ url: '../pages/login/main' });
+          wx.redirectTo({ url: '../pages/login/main' });
           reject('Token读取失败');
         }
         if (!token) {
-          wx.navigateTo({ url: '../pages/login/main' });
+          wx.redirectTo({ url: '../pages/login/main' });
           reject('Token读取失败');
         }
         header.Authorization = token;
@@ -41,7 +41,7 @@ export default function (method, url, data, option) {
         success: function(res) {
           console.log(res);
           if (res.statusCode === 401) {
-            wx.navigateTo({ url: '/pages/login/main' });
+            wx.redirectTo({ url: '/pages/login/main' });
             reject('权限验证失败');
           } else if (res.statusCode === 200) {
             resolve(res.data);
