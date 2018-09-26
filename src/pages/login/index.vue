@@ -49,7 +49,7 @@ export default {
           key: "Token",
           data: res,
           success: () => {
-            wx.navigateTo({ url: '../index/main' });
+            wx.redirectTo({ url: '../index/main' });
           }
         });
       }).catch(err => {

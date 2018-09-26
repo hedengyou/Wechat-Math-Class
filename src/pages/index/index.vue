@@ -1,55 +1,52 @@
 <template>
     <div>
       <p class="top"><b>四川大学数学公共课</b></p>
-      
       <div>
-          <p style="padding:5px">我的课程<button type="txt" style="float: right;padding:1px;font-size:12px" @click="enterChooseLessons">更多课程</button></p>
-          <div class="container_1">
-          <div class="img_1">
+        <p style="padding:5px">我的课程<button type="txt" style="float: right;padding:1px;font-size:12px" @click="enterChooseLessons">更多课程</button></p>
+        <div class="container_1">
+          <div class="img_1" @click="chooseLesson(0)">
             <image  class="picture_1" src="/static/images/3.jpg"/>
             <p class="p1">微积分</p>
           </div>
-
-          <div class="img_2">
+          <div class="img_2" @click="chooseLesson(1)">
             <image  class="picture_2" src="/static/images/1.jpg"/>
             <p class="p2">概率统计</p>
           </div>
-
-          <div class="img_3">
+          <div class="img_3" @click="chooseLesson(2)">
             <image  class="picture_3" src="/static/images/2.jpg"/>
             <p class="p3">线性代数</p>
           </div>
-          </div>
+        </div>
       </div>
       <div>
-          <p style="padding:5px">我的任务<button type="txt" style="float: right;padding:1px;font-size:12px" @click="enterChooseLessons">更多任务</button></p>
-          <div class="container_2">
+        <p style="padding:5px">我的任务<button type="txt" style="float: right;padding:1px;font-size:12px" @click="enterChooseLessons">更多任务</button></p>
+        <div class="container_2">
           <div class="img_4">
               <image  class="picture_4" src="/static/images/4.jpg"/>
             <p class="p4">作业1</p>
           </div>
-
           <div class="img_5">
-              <image  class="picture_5" src="/static/images/4.jpg"/>
+            <image  class="picture_5" src="/static/images/4.jpg"/>
             <p class="p5">作业2</p>
           </div>
-
           <div class="img_6">
-              <image  class="picture_6" src="/static/images/4.jpg"/>
+            <image  class="picture_6" src="/static/images/4.jpg"/>
             <p class="p6">作业3</p>
           </div>
-      </div>
-      
+        </div>
       </div>
     </div>
-    
 </template>
 
 <script>
 import HelloWorld from '../../components/HelloWorld';
 
 import API from '../../utils/services';
- 
+
+const lessonList = [
+  '微积分', '概率统计', '线性代数'
+];
+
 export default {
   components: {
     HelloWorld
@@ -63,13 +60,13 @@ export default {
   methods: {
     bindViewTap () {
       const url = '../logs/main';
-      wx.navigateTo({ url });
+      wx.redirectTo({ url });
     },
     getUserInfo () {
       // 调用登录接口
       wx.login({
         success: () => {
-          wx.navigateTo({ url: '../login/main' });
+          wx.redirectTo({ url: '../login/main' });
           wx.getUserInfo({
             success: (res) => {
               this.userInfo = res.userInfo;
@@ -80,7 +77,7 @@ export default {
       })
     }, 
     enterChooseLessons () {
-      wx.navigateTo({ url: '../myLessons/main'});
+      wx.redirectTo({ url: '../myLessons/main'});
     },
     testNetWork() {
       API.getAllUsers().then((data) => {
@@ -92,13 +89,17 @@ export default {
       API.getAllLessons().then((data) => {
         console.log(data);
       });
+    },
+    chooseLesson(index) {
+      const lesson = lessonList[index];
+      wx.redirectTo({ url: `../chooseItem/main?name=${lesson}`});
     }
   },
   created: function() {
     // 调用应用实例的方法获取全局数据
     // this.getUserInfo();
     //this.testNetWork();
-    this.fetchLessons();
+    // this.fetchLessons();
   }
 }
 </script>

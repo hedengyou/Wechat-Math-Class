@@ -19,13 +19,19 @@ function getAllLessons () {
   return request('GET', '/api/lessons');
 }
 
-function getOneLesson (id) {
+function getOneLessonById (id) {
   return request('GET', `/api/lesson/${id}`);
 }
+
+function getOneLessonByName (name) {
+  return request('GET', `/api/lesson/name/${name}`);
+}
+
 export default {
   helloApi,
   login,
   getAllUsers,
   getAllLessons,
-  getOneLesson
+  getOneLessonById,
+  getOneLessonByName
 }
