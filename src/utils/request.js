@@ -1,5 +1,5 @@
-// const baseUrl = 'http://localhost:4000';
-const baseUrl = 'http://132.232.82.254:4000';
+const baseUrl = 'http://localhost:4000';
+// const baseUrl = 'http://132.232.82.254:4000';
 
 // 不需要进行Token验证的api
 const noAuthUrls = [
@@ -41,6 +41,7 @@ export default function (method, url, data, option) {
         success: function(res) {
           console.log(res);
           if (res.statusCode === 401) {
+            console.log('test');
             wx.redirectTo({ url: '/pages/login/main' });
             reject('权限验证失败');
           } else if (res.statusCode === 200) {
@@ -52,6 +53,7 @@ export default function (method, url, data, option) {
         },
         fail: function(res) {
           console.log(res);
+          wx.redirectTo({ url: '/pages/login/main' });
           reject('error');
         }
       })

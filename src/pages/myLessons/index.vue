@@ -1,51 +1,44 @@
 <template>
   <div class="all">
-       <p class="top_1"><b>四川大学数学公共课</b></p>
-          <p class="top_2">我的课程<button type="txt" style="float: right;margin:5px;padding:2px;font-size:12px" @click="chooseLessons">返回主界面</button></p>
+    <p class="top_1"><b>四川大学数学公共课</b></p>
+    <p class="top_2">我的课程<button type="txt" style="float: right;margin:5px;padding:2px;font-size:12px" @click="returnHome">返回主界面</button></p>
     <div class="container">
-      <div class="container_1">
+      <div class="container_1" v-for="(item, index) in lessonList" :key="index">
         <div class="box">
           <div class="img_1">
             <img  class="picture_1" src="/static/images/3.jpg"/>
-            <p class="p1">微积分</p>
+            <p class="p1">{{ item.name }}</p>
           </div>
-          <div class="txt_1">微积分是高等数学中研究函数的微分、积分以及有关概念和应用的数学分支。内容主要包括极限、微分学、积分学及其应用。<button style="float: right;margin:5px;padding:2px;font-size:12px">章节知识点选择</button></div>
+          <div class="txt_1">{{ item.description }}<button style="float: right;margin:5px;padding:2px;font-size:12px"  @click="chooseLessons(item)">章节知识点选择</button></div>
         </div>
       </div>
-     
-      <div class="container_2">
-        <div class="box">
-          <div class="img_2">
-            <image  class="picture_2" src="/static/images/1.jpg"/>
-            <p class="p2">概率统计</p>
-          </div>
-          <div class="txt_2">概率统计是研究自然界中随机现象统计规律的数学方法。概率统计主要研究对象为随机事件、随机变量以及随机过程。<button style="float: right;margin:5px;padding:2px;font-size:12px">章节知识点选择</button></div>
-        </div>
-      </div>
-      
-      <div class="container_3">
-        <div class="box">
-          <div class="img_3">
-            <image  class="picture_3" src="/static/images/2.jpg"/>
-            <p class="p3">线性代数</p>
-          </div>
-          <div class="txt_3">线性代数是数学的一个分支，它的研究对象是向量，向量空间（或称线性空间），线性变换和有限维的线性方程组。<button style="float: right;margin:5px;padding:2px;font-size:12px">章节知识点选择</button></div>
-        </div>
-      </div>
-
     </div>  
   </div>
 </template>
 
 <script>
-export default{
-  data: {
+import API from '../../utils/services';
 
+export default{
+  data() {
+    return {
+      lessonList: []
+    }
   },
   methods: {
-    chooseLessons () {
-      wx.navigateTo({url:'../index/main'});
+    chooseLessons (item) {
+      wx.navigateTo({
+        url: `../chooseItem/main?id=${item.id}`
+      });
+    },
+    returnHome() {
+      wx.redirectTo({ url: '../index/main' });
     }
+  },
+  mounted() {
+    API.getAllLessons().then(data => {
+      this.lessonList = data;
+    });
   }
 }
 </script>
