@@ -6,7 +6,7 @@
       <div class="container_1" v-for="(item, index) in lessonList" :key="index">
         <div class="box">
           <div class="img_1">
-            <img  class="picture_1" src="/static/images/3.jpg"/>
+            <img  class="picture_1" :src="item.cover" />
             <p class="p1">{{ item.name }}</p>
           </div>
           <div class="txt_1">{{ item.description }}<button style="float: right;margin:5px;padding:2px;font-size:12px"  @click="chooseLessons(item)">章节知识点选择</button></div>

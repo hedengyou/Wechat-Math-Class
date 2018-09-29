@@ -5,15 +5,15 @@
       <p style="padding:5px">我的课程<button type="txt" style="float: right;padding:1px;font-size:12px" @click="enterChooseLessons">更多课程</button></p>
       <div class="container_1">
         <div class="img_1" @click="chooseLesson(0)">
-          <image  class="picture_1" src="/static/images/3.jpg"/>
+          <image class="picture_1" src="https://img-1253626956.cos.ap-chengdu.myqcloud.com/1.jpg"/>
           <p class="p1">微积分</p>
         </div>
         <div class="img_2" @click="chooseLesson(1)">
-          <image  class="picture_2" src="/static/images/1.jpg"/>
+          <image  class="picture_2" src="https://img-1253626956.cos.ap-chengdu.myqcloud.com/2.jpg"/>
           <p class="p2">概率统计</p>
         </div>
         <div class="img_3" @click="chooseLesson(2)">
-          <image  class="picture_3" src="/static/images/2.jpg"/>
+          <image  class="picture_3" src="https://img-1253626956.cos.ap-chengdu.myqcloud.com/3.jpg"/>
           <p class="p3">线性代数</p>
         </div>
       </div>
@@ -44,7 +44,9 @@ import HelloWorld from '../../components/HelloWorld';
 import API from '../../utils/services';
 
 const lessonList = [
-  '微积分', '概率统计', '线性代数'
+  { name: '微积分', cover: 'https://img-1253626956.cos.ap-chengdu.myqcloud.com/1.jpg' },
+  { name: '概率统计', cover: 'https://img-1253626956.cos.ap-chengdu.myqcloud.com/2.jpg' },
+  { name: '线性代数', cover: 'https://img-1253626956.cos.ap-chengdu.myqcloud.com/3.jpg' }
 ];
 
 export default {
@@ -84,7 +86,7 @@ export default {
     },
     chooseLesson(index) {
       const lesson = lessonList[index];
-      wx.navigateTo({ url: `../chooseItem/main?name=${lesson}`});
+      wx.navigateTo({ url: `../chooseItem/main?name=${lesson.name}`});
     }
   },
   mounted: function() {
