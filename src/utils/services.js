@@ -27,11 +27,16 @@ function getOneLessonByName (name) {
   return request('GET', `/api/lesson/name/${name}`);
 }
 
+function getVideoUrl (videoId) {
+  return request('GET', `/api/video/${videoId}`);
+}
+
 export default {
   helloApi,
   login,
   getAllUsers,
   getAllLessons,
   getOneLessonById,
-  getOneLessonByName
+  getOneLessonByName,
+  getVideoUrl
 }

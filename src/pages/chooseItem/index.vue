@@ -8,10 +8,10 @@
     </div>
     <div class="content">
       <div class="left">
-        <div v-for="(item,index) in lesson.chapter" :key="index" @click="chooseItem(item)">{{ item }}</div>
+        <div v-for="(item,index) in lesson.chapters" :key="index" @click="chooseItem(item)">{{ item.name }}</div>
       </div>
       <div class="right">
-        <div v-for="(item,index) in subChapters" :key="index" >{{ item }}</div>
+        <div v-for="(item,index) in subChapters" :key="index" @click="playVideo(item)">{{ item.name }}</div>
       </div>
     </div>
   </div>
@@ -29,10 +29,12 @@ export default {
   },
   methods:{
     chooseItem(item) {
-      console.log(item);
       this.currentChapter = item;
-      const subs = this.lesson.subChapter.filter(x => x.split('-')[0] === item);
+      const subs = item.subChapters;
       this.subChapters = subs;
+    },
+    playVideo(item) {
+      wx.navigateTo({ url: `../video/main?id=${item.video}`});
     }
   },
   mounted() {
@@ -42,12 +44,10 @@ export default {
     const { id, name } = option;
     if (id) {
       API.getOneLessonById(id).then(data => {
-        console.log(data);
         this.lesson = data;
       });
     } else if (name) {
       API.getOneLessonByName(name).then(data => {
-        console.log(data);
         this.lesson = data;
       });
     }

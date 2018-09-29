@@ -15,7 +15,6 @@
         type="number"
         label="密码"
         @change="passwordChange"
-        :value="starStr"
       />
     </div>
     <button class="submit-button" size="mini" type="primary" @click="buttonClick">登录</button>
@@ -62,14 +61,15 @@ export default {
       this.name = value;
     },
     passwordChange(value) {
-      if (value.length > this.password.length) {
-        // 说明输入字符
-        this.password += value[value.length - 1];
-        this.starStr += '*';
-      } else {
-        this.password = this.password.slice(0, this.password.length - 1);
-        this.starStr = this.starStr.slice(0, this.starStr.length - 1)
-      }
+      // if (value.length > this.password.length) {
+      //   // 说明输入字符
+      //   this.password += value[value.length - 1];
+      //   this.starStr += '*';
+      // } else {
+      //   this.password = this.password.slice(0, this.password.length - 1);
+      //   this.starStr = this.starStr.slice(0, this.starStr.length - 1)
+      // }
+      this.password = value;
     }
   }
 }
