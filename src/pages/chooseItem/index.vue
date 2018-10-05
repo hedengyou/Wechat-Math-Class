@@ -34,7 +34,7 @@ export default {
       this.subChapters = subs;
     },
     playVideo(item) {
-      wx.navigateTo({ url: `../video/main?id=${item.video}`});
+      wx.navigateTo({ url: `../video/main?videoId=${item.video}&lesson=${this.lesson.name}&chapter=${this.currentChapter.name}&subChapter=${item.name}`});
     }
   },
   mounted() {
