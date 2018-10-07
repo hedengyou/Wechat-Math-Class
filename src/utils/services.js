@@ -31,6 +31,10 @@ function getVideoUrl (videoId) {
   return request('GET', `/api/video/${videoId}`);
 }
 
+function getQuestions (lesson, chapter, subChapter) {
+  return request('POST', '/api/lesson/getQuestions', { lesson, chapter, subChapter });
+}
+
 export default {
   helloApi,
   login,
@@ -38,5 +42,6 @@ export default {
   getAllLessons,
   getOneLessonById,
   getOneLessonByName,
-  getVideoUrl
+  getVideoUrl,
+  getQuestions
 }
