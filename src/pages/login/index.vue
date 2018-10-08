@@ -4,15 +4,15 @@
       四川大学公共数学课
     </div>
     <div>
-      <mp-field
+      <Field
         placeholder="请输入学号"
         type="number"
         label="账号"
         @change="nameChange"
       />
-      <mp-field
+      <Field
         placeholder="请输入密码"
-        type="number"
+        type="password"
         label="密码"
         @change="passwordChange"
       />
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import MpField from 'mp-weui/packages/field';
+import Field from '../../components/Field';
 import Toast from 'mp-weui/packages/toast'
 
 import API from '../../utils/services';
@@ -34,11 +34,12 @@ export default {
       userInfo: {},
       name: '',
       password: '',
-      starStr: ''
+      starStr: '',
+      pwdStr: ''
     }
   },
   components: {
-    MpField, Toast
+    Field, Toast
   },
   methods: {
     buttonClick () {
@@ -71,6 +72,9 @@ export default {
       // }
       this.password = value;
     }
+  },
+  watch: {
+
   }
 }
 </script>

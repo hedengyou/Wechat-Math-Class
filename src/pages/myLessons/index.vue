@@ -45,15 +45,17 @@ export default{
       wx.redirectTo({ url: '../index/main' });
     }
   },
-  onShow() {
+  mounted() {
     const option = this.$root.$mp.query;
     const { source } = option;
     this.source = source;
-  },
-  mounted() {
-    API.getAllLessons().then(data => {
-      this.lessonList = data;
-    });
+    if (source === 'lesson') {
+      API.getAllLessons().then(data => {
+        this.lessonList = data;
+      });
+    } else if (source === 'task') {
+      
+    }
   }
 }
 </script>
