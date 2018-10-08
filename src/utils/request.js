@@ -1,5 +1,5 @@
-const baseUrl = 'http://localhost:4000';
-// const baseUrl = 'http://132.232.82.254:4000';
+// const baseUrl = 'http://localhost:4000';
+const baseUrl = 'http://132.232.82.254:4000';
 
 // 不需要进行Token验证的api
 const noAuthUrls = [
