@@ -1,18 +1,27 @@
 <template>
-  <div class="all">
-    <p class="top_1"><b>四川大学数学公共课</b></p>
-    <p class="top_2">我的课程<button type="txt" style="float: right;margin:5px;padding:2px;font-size:12px" @click="returnHome">返回主界面</button></p>
-    <div class="container">
-      <div class="container_1" v-for="(item, index) in lessonList" :key="index">
-        <div class="box">
-          <div class="img_1">
-            <img  class="picture_1" :src="item.cover" />
-            <p class="p1">{{ item.name }}</p>
+  <div>
+    <div class="all" v-if="source === 'lesson'">
+      <p class="top_1"><b>四川大学数学公共课</b></p>
+      <p class="top_2">我的课程<button type="txt" style="float: right;margin:5px;padding:2px;font-size:12px" @click="returnHome">返回主界面</button></p>
+      <div class="container">
+        <div class="container_1" v-for="(item, index) in lessonList" :key="index">
+          <div class="box">
+            <div class="img_1">
+              <img  class="picture_1" :src="item.cover" />
+              <p class="p1">{{ item.name }}</p>
+            </div>
+            <div class="txt_1">{{ item.description }}<button style="float: right;margin:5px;padding:2px;font-size:12px"  @click="chooseLessons(item)">章节知识点选择</button></div>
           </div>
-          <div class="txt_1">{{ item.description }}<button style="float: right;margin:5px;padding:2px;font-size:12px"  @click="chooseLessons(item)">章节知识点选择</button></div>
         </div>
-      </div>
-    </div>  
+      </div>  
+    </div>
+    <div class="all" v-if="source === 'task'">
+      <p class="top_1"><b>四川大学数学公共课</b></p>
+      <p class="top_2">我的作业<button type="txt" style="float: right;margin:5px;padding:2px;font-size:12px" @click="returnHome">返回主界面</button></p>
+    </div>
+    <div v-else>
+      未知页面
+    </div>
   </div>
 </template>
 
@@ -22,7 +31,8 @@ import API from '../../utils/services';
 export default{
   data() {
     return {
-      lessonList: []
+      lessonList: [],
+      source: ''
     }
   },
   methods: {
@@ -34,6 +44,11 @@ export default{
     returnHome() {
       wx.redirectTo({ url: '../index/main' });
     }
+  },
+  onShow() {
+    const option = this.$root.$mp.query;
+    const { source } = option;
+    this.source = source;
   },
   mounted() {
     API.getAllLessons().then(data => {

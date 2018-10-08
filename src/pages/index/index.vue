@@ -2,7 +2,7 @@
   <div>
     <p class="top"><b>四川大学数学公共课</b></p>
     <div>
-      <p style="padding:5px">我的课程<button type="txt" style="float: right;padding:1px;font-size:12px" @click="enterChooseLessons">更多课程</button></p>
+      <p style="padding:5px">我的课程<button type="txt" style="float: right;padding:1px;font-size:12px" @click="enterList('lesson')">更多课程</button></p>
       <div class="container_1">
         <div class="img_1" @click="chooseLesson(0)">
           <image class="picture_1" src="https://img-1253626956.cos.ap-chengdu.myqcloud.com/1.jpg"/>
@@ -19,7 +19,7 @@
       </div>
     </div>
     <div>
-      <p style="padding:5px">我的任务<button type="txt" style="float: right;padding:1px;font-size:12px" @click="enterChooseLessons">更多任务</button></p>
+      <p style="padding:5px">我的任务<button type="txt" style="float: right;padding:1px;font-size:12px" @click="enterList('task')">更多任务</button></p>
       <div class="container_2">
         <div class="img_4">
             <image  class="picture_4" src="/static/images/4.jpg"/>
@@ -78,8 +78,8 @@ export default {
         }
       })
     }, 
-    enterChooseLessons () {
-      wx.redirectTo({ url: '../myLessons/main'});
+    enterList (source) {
+      wx.redirectTo({ url: `../myLessons/main?source=${source}`});
     },
     testAuth() {
       API.getAllLessons();
