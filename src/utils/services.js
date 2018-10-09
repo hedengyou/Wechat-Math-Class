@@ -35,6 +35,10 @@ function getQuestions (lesson, chapter, subChapter) {
   return request('POST', '/api/lesson/getQuestions', { lesson, chapter, subChapter });
 }
 
+function getAllWork () {
+  return request('GET', '/api/homeworkAll');
+}
+
 export default {
   helloApi,
   login,
@@ -43,5 +47,6 @@ export default {
   getOneLessonById,
   getOneLessonByName,
   getVideoUrl,
-  getQuestions
+  getQuestions,
+  getAllWork
 }
